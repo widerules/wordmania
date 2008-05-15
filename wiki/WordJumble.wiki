@@ -1,5 +1,4 @@
-This page lists information about the worddjumble
-
+This page lists information about the WordJumble
 = Introduction =
 
 WordJumble is one of the games in the suite of games provided by WordMania.
