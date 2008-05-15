@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Word Mania</string>
+    <string name="score_label">Score:</string>
+    <string name="score_box">0</string>
+    <string name="jumbled_word">Jumbled</string>
+    <string name="solution_word">Solution</string>
+    <string name="submit_button">Submit</string>
+    <string name="clear_button">Clear</string>
+    <string name="word_jumble_button">Word Jumble</string>
+    <string name="status_box">Status displayed here</string>
+    <string name="time_label">Time:</string>
+    <string name="time_remaining">5:00</string>
+    <string name="round_score">Round Score:</string>
+    <string name="round_target">Target:</string>
+</resources>
