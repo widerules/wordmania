@@ -9,25 +9,25 @@
 	  android:layout_height="wrap_content">
 	  
 	  <TextView android:id="@id/android:empty"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="@string/time_label"
-          android:layout_weight="1" />
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/time_label"
+      android:layout_weight="1" />
     <TextView android:id="@+id/time_remaining"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="@string/time_remaining"
-          android:layout_weight="1" />
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/time_remaining"
+      android:layout_weight="1" />
 	  <TextView android:id="@id/android:empty"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="@string/score_label"
-	        android:layout_weight="1" />
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/score_label"
+      android:layout_weight="1" />
 	  <TextView android:id="@+id/score"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="@string/score_box"
-	        android:layout_weight="1" />
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/score_box"
+      android:layout_weight="1" />
 	</LinearLayout>
 	
 	<view class="com.bakarbaazi.android.wordmania.common.WordView"
@@ -36,38 +36,39 @@
     android:layout_height="wrap_content" />
     
   <EditText android:id="@+id/solution_word"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:editable="false"
-        android:text="@string/solution_word"/>
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:editable="false"
+    android:text="@string/solution_word"/>
         
   <LinearLayout android:orientation="horizontal"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content">
     
     <TextView android:id="@id/android:empty"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="@string/round_score"
-          android:layout_weight="1" />
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/round_score"
+      android:layout_weight="1" />
     <TextView android:id="@+id/round_score"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_weight="1" />
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_weight="1" />
     <TextView android:id="@id/android:empty"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="@string/round_target"
-          android:layout_weight="1" />
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/round_target"
+      android:layout_weight="1" />
     <TextView android:id="@+id/round_target"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_weight="1" />
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_weight="1" />
   </LinearLayout>
         
   <LinearLayout android:orientation="horizontal"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content">
+    
 	  <Button android:id="@+id/clear_solution_button" 
 	    android:text="@string/clear_button"
 	    android:layout_width="wrap_content"
@@ -81,11 +82,11 @@
 	</LinearLayout>
 	
 	<TextView android:id="@+id/status_box"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/status_box" />
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/status_box" />
   <TextView android:id="@+id/found_words"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"/>
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"/>
   
 </LinearLayout>
