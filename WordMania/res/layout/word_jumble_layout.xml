@@ -30,7 +30,18 @@
 	        android:layout_weight="1" />
 	</LinearLayout>
 	
-	<LinearLayout android:orientation="horizontal"
+	<view class="com.bakarbaazi.android.wordmania.common.WordView"
+    android:id="@+id/jumbled_word"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" />
+    
+  <EditText android:id="@+id/solution_word"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:editable="false"
+        android:text="@string/solution_word"/>
+        
+  <LinearLayout android:orientation="horizontal"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content">
     
@@ -53,15 +64,6 @@
           android:layout_height="wrap_content"
           android:layout_weight="1" />
   </LinearLayout>
-	
-  <TextView android:id="@+id/jumbled_word"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/jumbled_word" />
-  <EditText android:id="@+id/solution_word"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/solution_word"/>
         
   <LinearLayout android:orientation="horizontal"
     android:layout_width="fill_parent"
