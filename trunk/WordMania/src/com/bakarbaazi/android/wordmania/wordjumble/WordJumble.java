@@ -5,6 +5,7 @@ import java.util.HashMap;
 import com.bakarbaazi.android.wordmania.R;
 import com.bakarbaazi.android.wordmania.common.WordJumbler;
 import com.bakarbaazi.android.wordmania.common.WordManager;
+import com.bakarbaazi.android.wordmania.common.WordView;
 
 import android.app.Activity;
 import android.content.DialogInterface;
@@ -17,15 +18,17 @@ import android.widget.TextView;
 
 public class WordJumble extends Activity {
   private static final int MIN_NUM_LETTERS = 5;
+  private static final int SMALLEST_WORDS_LENGTH = 3;
   
   private TextView solutionText = null;
-  private TextView jumbledText = null;
   private TextView scoreDisplay = null;
   private TextView statusDisplay = null;
   private TextView remainingTimeDisplay = null;
   private TextView foundWordsDisplay = null;
   private TextView roundScoreDisplay = null;
   private TextView roundTargetDisplay = null;
+  
+  private WordView jumbledText = null;
   
   private Score currentScore = new Score();
   private Score roundScore = null;
@@ -48,7 +51,7 @@ public class WordJumble extends Activity {
     this.setTitle("Word Jumble");
     
     solutionText = (TextView) findViewById(R.id.solution_word);
-    jumbledText = (TextView) findViewById(R.id.jumbled_word);
+    jumbledText = (WordView) findViewById(R.id.jumbled_word);
     scoreDisplay = (TextView) findViewById(R.id.score);
     statusDisplay = (TextView) findViewById(R.id.status_box);
     remainingTimeDisplay = (TextView) findViewById(R.id.time_remaining);
@@ -58,10 +61,13 @@ public class WordJumble extends Activity {
     
     wordManager = new WordManager(this.getResources());
     
+    jumbledText.setLetterSelectListener(new JumbledTextHandler());
+    
     Button clear = (Button) findViewById(R.id.clear_solution_button);
     clear.setOnClickListener(new View.OnClickListener() {
       public void onClick(View view) {
         solutionText.setText("");
+        jumbledText.setDisabled(false);
       }
     });
     
@@ -82,7 +88,7 @@ public class WordJumble extends Activity {
    * @return true id the solution is correct.
    */
   private boolean isValidSolution(String solution) {
-    if (determiner.isLegitimate(solution)) {
+    if (determiner.isLegitimate(solution.toLowerCase())) {
       return true;
     }
     return false;
@@ -107,7 +113,7 @@ public class WordJumble extends Activity {
           false, null);
     } else {
       roundScore = new Score(0);
-      jumbledText.setText(jumbler.jumble(correctWord));
+      jumbledText.setWord(jumbler.jumble(correctWord));
       solutionText.setText("");
       statusDisplay.setText("New Round!");
       foundWordsDisplay.setText("");
@@ -202,20 +208,21 @@ public class WordJumble extends Activity {
     public void onClick(View view) {
       String solution = solutionText.getText().toString();
       if (solution.length() < 3) {
-        return;
-      }
-      if (!isValidSolution(solution)) {
-        statusDisplay.setText("Incorrect word, you pig!!");
-        return;
+        statusDisplay.setText("The words should at least have "
+            + SMALLEST_WORDS_LENGTH + "letters.");
+      } else if (!isValidSolution(solution)) {
+        statusDisplay.setText(solution + " doesn't seem like a valid word");
       } else {
         foundWordsDisplay.append("," + solution);
         roundTracker.tickOffWord(solution);
+        updateScore(scoreCalculator.calculate(solution));
+        if (isRoundOver()) {
+          finishRound();
+          startNewRound();
+        }
       }
-      updateScore(scoreCalculator.calculate(solution));
-      if (isRoundOver()) {
-        finishRound();
-        startNewRound();
-      }
+      solutionText.setText("");
+      jumbledText.setDisabled(false);
     }
   }
   
@@ -261,6 +268,13 @@ public class WordJumble extends Activity {
       } else {
         remainingTimeDisplay.setText(minutes + ":" + seconds);
       }
+    }
+  }
+  
+  private class JumbledTextHandler implements WordView.LetterSelectListener {
+    public void onSelect(int index, String s) {
+      solutionText.append(s);
+      jumbledText.setDisabled(index, true);
     }
   }
 }

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <drawable name="enabled">#FFFFFF</drawable>
+    <drawable name="disabled">#777777</drawable>
+    <drawable name="highlighted">#FFCC99</drawable>
+</resources>
