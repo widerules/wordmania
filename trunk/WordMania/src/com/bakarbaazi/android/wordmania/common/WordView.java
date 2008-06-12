@@ -7,6 +7,7 @@ import com.bakarbaazi.android.wordmania.R;
 import android.content.Context;
 import android.graphics.drawable.PaintDrawable;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TableLayout;
@@ -33,13 +34,16 @@ public class WordView extends TableLayout {
       background.setCornerRadius(CORNER_RADIUS);
       
       letters[i].setBackground(background);
-      letters[i].setPadding(10, 10, 10, 10);
+      letters[i].setPadding(7, 5, 7, 5);
       EventHandler eventHandler = new EventHandler(i);
       letters[i].setOnClickListener(eventHandler);
       letters[i].setOnFocusChangeListener(eventHandler);
+      letters[i].setTextSize(TypedValue.COMPLEX_UNIT_SP, 30);
+      letters[i].setTextScaleX(1.2F);
       
       TableRow.LayoutParams layoutParams = new TableRow.LayoutParams();
-      layoutParams.setMargins(2, 2, 2, 2);
+      layoutParams.setMargins(1, 1, 1, 1);
+      
       row.addView(letters[i], layoutParams);
     }
     this.addView(row, new TableLayout.LayoutParams());
