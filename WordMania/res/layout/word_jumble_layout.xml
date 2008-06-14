@@ -88,8 +88,9 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:text="@string/status_box" />
-  <TextView android:id="@+id/found_words"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"/>
+  <ListView android:id="@+id/found_words"
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content"
+    android:drawSelectorOnTop="false"/>
   
 </LinearLayout>

@@ -14,6 +14,7 @@ import android.os.Handler;
 import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 public class WordJumble extends Activity {
@@ -24,10 +25,8 @@ public class WordJumble extends Activity {
   private TextView scoreDisplay = null;
   private TextView statusDisplay = null;
   private TextView remainingTimeDisplay = null;
-  private TextView foundWordsDisplay = null;
   private TextView roundScoreDisplay = null;
   private TextView roundTargetDisplay = null;
-  
   private WordView jumbledText = null;
   
   private Score currentScore = new Score();
@@ -39,7 +38,8 @@ public class WordJumble extends Activity {
   private Handler handler = new Handler();
   private LegitimacyDeterminer determiner = null;
   private RoundTracker roundTracker = null;
-  private TimerHandler timerHandler = null;  
+  private TimerHandler timerHandler = null;
+  private FoundWordsAdapter foundWords = null;
   
   // The actual word for this round
   private String correctWord = null;
@@ -50,14 +50,17 @@ public class WordJumble extends Activity {
     setContentView(R.layout.word_jumble_layout);
     this.setTitle("Word Jumble");
     
+    foundWords = new FoundWordsAdapter(this);
     solutionText = (TextView) findViewById(R.id.solution_word);
     jumbledText = (WordView) findViewById(R.id.jumbled_word);
     scoreDisplay = (TextView) findViewById(R.id.score);
     statusDisplay = (TextView) findViewById(R.id.status_box);
     remainingTimeDisplay = (TextView) findViewById(R.id.time_remaining);
-    foundWordsDisplay = (TextView) findViewById(R.id.found_words);
     roundScoreDisplay = (TextView) findViewById(R.id.round_score);
     roundTargetDisplay = (TextView) findViewById(R.id.round_target);
+    
+    ListView foundWordsDisplay = (ListView) findViewById(R.id.found_words);
+    foundWordsDisplay.setAdapter(foundWords);
     
     wordManager = new WordManager(this.getResources());
     
@@ -116,7 +119,7 @@ public class WordJumble extends Activity {
       jumbledText.setWord(jumbler.jumble(correctWord));
       solutionText.setText("");
       statusDisplay.setText("New Round!");
-      foundWordsDisplay.setText("");
+      foundWords.clear();
       roundScoreDisplay.setText("" + roundScore.getScore());
       determiner = new LegitimacyDeterminer(getResources(), correctWord);
       roundTracker = new RoundTracker(determiner.getPossibleWords());
@@ -213,7 +216,7 @@ public class WordJumble extends Activity {
       } else if (!isValidSolution(solution)) {
         statusDisplay.setText(solution + " doesn't seem like a valid word");
       } else {
-        foundWordsDisplay.append("," + solution);
+        foundWords.addWord(solution);
         roundTracker.tickOffWord(solution);
         updateScore(scoreCalculator.calculate(solution));
         if (isRoundOver()) {
