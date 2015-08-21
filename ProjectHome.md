@@ -1,0 +1,1 @@
+Wordmania is a collection of word games for android platform.
